@@ -206,12 +206,11 @@ Solve Exercise 5 here:
 */
 
 for (const poke of pokemon) {
-  if (poke.number === 94 || poke.number === 133 || poke.number === 38) {
+  if (poke.number === 94 || poke.number === 143 || poke.number === 38) {
     game.party.push(poke);
-    console.log(poke)
+    console.log(poke);
   }
 }
-
 
 /*
 Exercise 6
@@ -222,10 +221,9 @@ Exercise 6
 Solve Exercise 6 here:
 */
 
-for (const gym of game.gyms){
-  if(gym.difficulty < 3)
-    gym.completed = true;
-  console.log(gym)
+for (const gym of game.gyms) {
+  if (gym.difficulty < 3) gym.completed = true;
+  console.log(gym);
 }
 /*
 Exercise 7
@@ -245,9 +243,9 @@ More Hints: The existing starter Pokemon will be *replaced* in your party with t
 Solve Exercise 7 here:
 */
 for (let i = 0; i < game.party.length; i++) {
-  if (game.party[i].starter === true) { 
+  if (game.party[i].starter === true) {
     for (const evolve of pokemon) {
-      if (evolve.number === 5) { 
+      if (evolve.number === 5) {
         game.party.splice(i, 1, evolve);
         console.log(evolve);
       }
@@ -262,7 +260,7 @@ Exercise 8
 
 Solve Exercise 8 here:
 */
-for (let i = 0; i< game.party.length; i++){
+for (let i = 0; i < game.party.length; i++) {
   console.log(game.party[i].name);
 }
 
@@ -274,6 +272,12 @@ Exercise 9
 
 Solve Exercise 9 here:
 */
+
+for (let i = 0; i < pokemon.length; i++) {
+  if (pokemon[i].starter === true) {
+    console.log(pokemon[i].name);
+  }
+}
 
 /*
 Exercise 10
@@ -287,6 +291,12 @@ After writing this method, call it and pass in a Pokemon object of your choice f
 Solve Exercise 10 here:
 */
 
+game.catchPokemon = function (pokemonObj) {
+  game.party.push (pokemonObj)
+}
+game.catchPokemon(pokemon[149]);
+
+console.log(game.party)
 
 /*
 Exercise 11
@@ -301,6 +311,16 @@ Also, log the `game.items` array to confirm that the pokeball quantity is being 
 Solve Exercise 11 here:
 */
 
+game.catchPokemon = function (pokemonObj) {
+  game.party.push(pokemonObj);  for (let i = 0; i < game.items.length; i++) {
+    if (game.items[i].name === "pokeball") {
+      game.items[i].quantity -= 1;
+    }
+  }
+};
+game.catchPokemon(pokemon[24]);
+console.log(game.items);
+
 /*
 Exercise 12
 1. Similar to Exercise 6, now complete gyms with a difficulty below 6. How will you approach this?
@@ -308,6 +328,12 @@ Exercise 12
 
 Solve Exercise 12 here:
 */
+
+
+for (const gym of game.gyms) {
+  if (gym.difficulty < 6) gym.completed = true;
+  console.log(gym);
+}
 
 /*
 Exercise 13
@@ -331,6 +357,19 @@ For example, if five gym objects have a value of `true` on their `completed` pro
 
 Solve Exercise 13 here:
 */
+game.gymStatus = function () {
+  const gymTally = { completed: 0, incomplete: 0 };
+  for (const gym of game.gyms) {
+    if (gym.completed) {
+      gymTally.completed++;
+    } else {
+      gymTally.incomplete++;
+    }
+  }
+  console.log(gymTally);
+};
+game.gymStatus();
+
 /*
 Exercise 14
 1. Add a `partyCount` method to `game` that counts the number of Pokémon in your party.
@@ -342,6 +381,12 @@ This method should:
 
 Solve Exercise 14 here:
 */
+game.partyCount = function () {
+  return game.party.length;
+};
+console.log(game.partyCount());
+
+
 /*
 Exercise 15
 1. Now, complete gyms with a difficulty below 8. Reflect on how this is similar to or different from the previous gym exercises.
@@ -350,6 +395,11 @@ Exercise 15
 Solve Exercise 15 here:
 */
 
+for (const gym of game.gyms) {
+  if (gym.difficulty < 8) gym.completed = true;
+  console.log(gym);
+}
+
 /*
 Exercise 16
 1. Log the entire `game` object to the console. Take a moment to review the changes you've made throughout the exercises.
@@ -357,3 +407,36 @@ Exercise 16
 
 Solve Exercise 16 here:
 */
+console.log(game);
+
+
+
+
+// ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠢⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+// ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡄⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+// ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣷⡀⠀⠀⠑⢄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+// ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣧⠀⠀⠀⠀⠑⢄⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡠⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+// ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⣿⣇⠀⠀⠀⠀⠀⠑⢄⣰⠉⠢⣀⠐⡀⢀⣀⠤⠐⠂⠉⠀⡼⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+// ⠀⠀⢠⣀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠙⠀⠀⠈⠀⠈⠁⠀⠀⠀⠀⠀⣼⠁⠀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+// ⢴⣶⣾⣿⡟⠲⢤⣀⠀⠀⠀⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢨⣟⣁⣀⣀⣀⣀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⢀⠀
+// ⠀⣨⣿⣿⣷⣄⠀⠈⠑⠢⠄⠛⠛⠿⠧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣤⠞⠁
+// ⠈⠉⠻⣿⣿⣿⣷⣄⠀⣤⣤⣤⣶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣶⣿⡷⠂⠀⠀⠀⠀⢀⣀⣤⣶⣿⡿⠟⠁⠀⠀
+// ⠀⠀⠀⠈⢿⣿⣿⣿⣧⣿⣿⣿⡟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣴⣿⣿⣿⣿⠞⠁⣀⣤⣴⣾⣿⣿⣿⡿⠋⠀⠀⠀⠀⠀
+// ⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⠆⢃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣴⣿⣿⣿⣿⣿⣿⣷⣾⣿⣿⣿⣿⣿⣿⠟⠉⠀⠀⠀⠀⠀⠀⠀
+// ⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⡏⠀⠀⢆⠀⠀⢀⠀⠀⠀⠀⠀⠀⣨⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+// ⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⡀⠀⠀⢈⣶⣶⣾⣿⣦⣤⠄⠀⠀⢠⣿⣿⣿⡿⠟⢻⣿⣿⣿⣿⣿⣿⣿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+// ⠀⠀⠀⠀⠀⣸⣿⣿⣿⣿⣿⡿⣿⣿⣷⣄⠀⠀⠘⣿⣿⣿⣿⣿⣿⣁⣴⣿⡿⠟⠉⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⠒⠒⠒⠤⠤⠤⠀⢀⣀⡀⠀⠀⠀
+// ⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⡇⠈⢻⣿⣿⣿⣶⣶⣿⣿⣿⣿⣿⣿⡿⠛⠙⠃⠀⠀⠀⢠⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠷⣀⠀⠀
+// ⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⡇⠀⡸⠉⠻⢿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣤⣄⣀⣀⣠⣴⣿⣿⣿⣿⣿⣿⣿⣥⣤⣀⠀⠀⠀⠀⠀⠀⠀⣀⡌⠁⠀⠀
+// ⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣷⡀⡇⠀⠀⠀⡸⠙⠻⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⠋⠁⠀⣀⣠⡤⠖⠚⠉⠉⠁⠀⠀⠀
+// ⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀⠀⢀⠃⠀⠀⠀⠀⠀⢩⠉⠉⠉⠉⢻⠉⠉⣩⣿⣿⣿⣿⣿⣿⣿⣿⡷⠾⠛⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+// ⠀⠀⠀⠀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣜⡀⠀⠀⠀⠀⠀⡘⠀⠀⠀⠀⣼⣠⣾⣿⣿⣿⣿⣿⣿⣿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+// ⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣦⣤⣤⣇⣀⣀⣤⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+// ⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+// ⠀⠀⠀⠈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+// ⠀⠀⠀⠀⠀⠙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+// ⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⣿⣿⠉⠙⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+// ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠃⠀⠀⠀⠀⠀⠉⠻⣿⣿⣿⣿⠿⠿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+// ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⠏⠀⠀⠈⢿⣿⣿⣿⣿⣿⣿⣿⣿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+// ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⣿⣿⣿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+// ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⠿⠟⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
